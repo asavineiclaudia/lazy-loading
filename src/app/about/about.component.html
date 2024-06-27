@@ -1,0 +1,102 @@
+<div>
+<p>Lazy loading is a design pattern that allows Angular to load modules, components, or services only when they are needed, rather than at the initial load. This reduces the initial load time and improves the application's performance. Here’s how you can implement and understand lazy loading in Angular:</p>
+
+<h3>Lazy Loading a Module</h3>
+
+<p>
+    To lazy load a module, you typically use Angular’s routing. However, you can also load a module programmatically.
+</p>
+<img src="../../assets/img/3.png" alt="3" style="width:880px;height:480px;">
+
+<h3>Lazy Loading a Component</h3>
+<p>You can load a component lazily by using Angular's dynamic component loader.</p>
+
+<h3>Lazy Loading a Service</h3>
+    <p>Services in Angular are typically singleton and provided at the root level. To lazy load a service, you can use Angular's injector.</p>
+    <img src="../../assets/img/2.png " alt="2" style="width:880px;height:480px;">
+
+    <h3>Preloading Strategies</h3>
+    <p>
+        Preloading strategies are used to load modules in the background after the application has been bootstrapped.
+    </p>
+
+    <h3>
+        How Lazy Loading Works in Angular
+    </h3>
+    <p>
+        Lazy loading in Angular works by loading modules asynchronously using the dynamic import syntax. When a route that requires a lazy-loaded module is activated, Angular will load the module and its associated dependencies on demand
+    </p>
+
+    <h3>How Lazy Loading Works in Module Federation</h3>
+    <p>
+        Module Federation allows loading code from another bundle at runtime. It is commonly used in microfrontend architectures.
+    </p>
+    <h3>Lazy Loading Without Routing</h3>
+    <p>
+        You can achieve lazy loading without routing by dynamically importing modules or components and manually injecting them into the application.
+    </p>
+ 
+    <p>
+        There are three different methods to utilize a component in an Angular application.
+    </p>
+
+    <ul>
+        <li>1. Loading on route change</li>
+        <li>2. Using as a child component</li>
+        <li>3. Dynamically loading on demand</li>
+    </ul>
+
+<p>Advantages and disadvantages of dynamically loading components:</p>
+<p>Advantages:</p>
+<ul>
+    <li>1. Reduced initial bundle size</li>
+    <li>2. Improved performance</li>
+    <li>3. Code splitting</li>
+    <li>4. Conditional loading</li>
+</ul>
+
+<p>Disadvantages:</p>
+<ul>
+    <li>1. Potential for bugs</li>
+    <li>2. Async loading challenges</li>
+
+</ul>
+
+<img src="../../assets/img/1.png" alt="1" style="width:880px;height:480px;">
+    <p>
+        By default, Angular loads all modules and their associated resources when the application is launched. However, with lazy loading, you can 
+        split your application into feature modules and load them dynamically only when they are needed. 
+        This way, you can reduce the initial bundle size and load only the necessary code for the current route or feature.
+    </p>
+
+    <h2>
+        Scroll down to load the lazy component.
+    </h2>
+    <div #lazyAnchor class="anchor"></div>
+    <div #dynamicComponentContainer></div>
+    <h2>
+        Hover to load Home Component
+     </h2>
+     <button (mouseover)="loadHomeComponent()">Hover to load Home Component</button>
+
+    <p>
+        To implement lazy loading in Angular, you need to follow these steps:
+    </p>
+    <ul>
+        <li>1. Create Feature Modules: Divide your application into feature modules that encapsulate related components, services, and other resources. 
+            Each feature module will have its own routing configuration.</li>
+        <li>2. Configure Routes: In the main routing configuration of your application, set up the routes for the feature modules using the `loadChildren` property instead of `component`. 
+            The `loadChildren` property specifies the path to the module file to be loaded lazily.</li>
+        <li>
+            Create Feature Module: In each feature module, define its own routing configuration using the `RouterModule.forChild()` method.
+        </li>
+        <li>Build and Serve: Build your Angular application using the Angular CLI. When you navigate to a route associated with a lazy-loaded module, 
+            Angular will fetch and load the necessary module and its resources on-demand.</li>
+        <li>
+            Lazy loading allows you to optimize your application’s performance by splitting it into smaller modules that can be loaded when needed. It helps reduce the initial loading time and improves 
+            the user experience, especially for larger applications with multiple features. 
+        </li>
+    
+    </ul>
+</div>
+
