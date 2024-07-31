@@ -1,5 +1,4 @@
 import { Component, ComponentRef, ElementRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-about',
@@ -16,7 +15,7 @@ export class AboutComponent implements OnInit {
   private intersectionObserver: IntersectionObserver;
   private isHomeComponentLoaded = false;
 
-  constructor(private router: Router) {}
+  constructor() {}
 
   ngOnInit(): void {
     console.log('Componenta About a fost încărcată!');

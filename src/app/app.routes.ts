@@ -4,7 +4,6 @@ import { AboutComponent } from './about/about.component';
 
 const routes: Routes = [
   { path: 'lazy', loadChildren: () => import('./lazy-module.module').then(m => m.LazyModuleModule) },
-  { path: 'about', component: AboutComponent },
 ];
 
 @NgModule({
