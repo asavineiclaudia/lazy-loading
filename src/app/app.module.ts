@@ -1,12 +1,9 @@
-import { InjectionToken, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routes';
-import { LazyService } from './lazy.service';
-
-export const lazyService = new InjectionToken<LazyService>('LazyService');
 
 @NgModule({
   declarations: [],
@@ -15,10 +12,7 @@ export const lazyService = new InjectionToken<LazyService>('LazyService');
     RouterModule,
     AppRoutingModule,
   ],
-  providers: [{
-    provide: lazyService,
-    useFactory: () => import('./lazy.service').then(m => m.LazyService)
-  }],
+  providers: [],
 })
 export class AppModule {
   ngDoBootstrap() {
