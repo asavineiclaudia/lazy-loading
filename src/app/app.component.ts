@@ -1,7 +1,4 @@
-import { Component, ComponentRef, Inject, ViewChild, ViewContainerRef } from '@angular/core';
-import { Router } from '@angular/router';
-import { LazyService } from './lazy.service';
-
+import { Component, ComponentRef, Injector, ViewChild, ViewContainerRef } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +11,7 @@ export class AppComponent {
   title = 'lazy-loading';
 
   @ViewChild('dynamicComponentContainer', { read: ViewContainerRef, static: true }) dynamicComponentContainer: ViewContainerRef;
-  constructor(@Inject(LazyService) private lazyService: LazyService) {}
+  constructor(private injector: Injector) {}
 
 
   loadLazyModule() {
@@ -23,8 +20,21 @@ export class AppComponent {
     }).catch(err => console.error('Lazy Module load error', err));
   }
 
-  loadLazyService() {
-    this.lazyService.doSomething();
+  
+
+  async loadLazyService() {
+    try {
+      const { LazyService } = await import('./lazy.service');
+      const lazyServiceInjector = Injector.create({
+        providers: [{ provide: LazyService, useClass: LazyService }],
+        parent: this.injector
+      });
+
+      const lazyServiceInstance = lazyServiceInjector.get(LazyService);
+      lazyServiceInstance.doSomething();
+    } catch (err) {
+      console.error('Error loading LazyService:', err);
+    }
   }
 
   loadAboutComponentDynamically() {
